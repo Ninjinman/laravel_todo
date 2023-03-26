@@ -91,6 +91,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task->delete();
+        return redirect('/tasks');
     }
 }

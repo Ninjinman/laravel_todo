@@ -34,6 +34,14 @@
                         <td>{{ $task->id }}</td>
                         <td>{{ $task->title }}</td>
                         <td>{{ $task->description }}</td>
+                        <td><a href="/tasks/{{ $task->id }}/edit">編集</a></td>
+                        <td>
+                            <form action="/tasks/{{ $task->id }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                            <button class="delete-button" type="submit">削除</button>
+                </form>
+            </td>
                     </tr>
                 @endforeach
             </tbody>
