@@ -38,10 +38,12 @@ class TaskController extends Controller
     {
         $request->validate([
             'task' => 'required|max:255',
+            'description' => 'required|max:255',
         ]);
 
         $task = new Task();
         $task->title = $request->task;
+        $task->description = $request->description;
         $task->save();
 
         return redirect('/tasks');
