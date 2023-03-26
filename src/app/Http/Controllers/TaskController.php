@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -34,7 +35,15 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'task' => 'required|max:255',
+        ]);
+    
+        $task = new Task();
+        $task->name = $request->task;
+        $task->save();
+    
+        return redirect('/tasks');
     }
 
     /**
