@@ -40,7 +40,7 @@ class TaskController extends Controller
         ]);
     
         $task = new Task();
-        $task->name = $request->task;
+        $task->title = $request->task;
         $task->save();
     
         return redirect('/tasks');
