@@ -17,6 +17,7 @@
         <form action="/tasks" method="post">
             @csrf
             <input class="task-input" type="text" name="task" placeholder="タスクを入力">
+            <input class="task-input" type="text" name="description" placeholder="詳細">
             <button class="submit-button" type="submit">登録</button>
         </form>
         <table class="table">
@@ -24,6 +25,7 @@
                 <tr>
                     <th>ID</th>
                     <th>タスク名</th>
+                    <th>詳細</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +33,7 @@
                     <tr>
                         <td>{{ $task->id }}</td>
                         <td>{{ $task->title }}</td>
+                        <td>{{ $task->description }}</td>
                     </tr>
                 @endforeach
             </tbody>
