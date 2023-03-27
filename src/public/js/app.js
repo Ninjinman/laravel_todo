@@ -5,14 +5,14 @@ let draggedTask = null;
 function handleDragStart(event) {
   // ドラッグされているタスクカードの要素を保存
   draggedTask = event.target;
-  // タスクカードを半透明にする
-  draggedTask.style.opacity = '0.5';
+  // タスクカードの要素にドラッグ中であることを示すスタイルを適用
+  draggedTask.classList.add('dragging');
 }
 
 // ドラッグ終了時のイベントリスナー
 function handleDragEnd(event) {
   // ドラッグされているタスクカードの要素を元に戻す
-  draggedTask.style.opacity = '';
+  draggedTask.classList.remove('dragging');
   draggedTask = null;
 }
 
@@ -39,18 +39,6 @@ function handleDrop(event) {
   }
 }
 
-// ドラッグ中にタスクカードが要素の範囲内に入った際のイベントリスナー
-function handleDragEnter(event) {
-  // タスクカードの背景色を変更する
-  event.target.classList.add('over');
-}
-
-// ドラッグ中にタスクカードが要素の範囲内に出た際のイベントリスナー
-function handleDragLeave(event) {
-  // タスクカードの背景色を元に戻す
-  event.target.classList.remove('over');
-}
-
 // タスクカードの要素を取得
 const taskCards = document.querySelectorAll('.task-card');
 
@@ -58,8 +46,6 @@ const taskCards = document.querySelectorAll('.task-card');
 taskCards.forEach(taskCard => {
     taskCard.addEventListener('dragstart', handleDragStart);
     taskCard.addEventListener('dragend', handleDragEnd);
-    taskCard.addEventListener('dragenter', handleDragEnter);
-    taskCard.addEventListener('dragleave', handleDragLeave);
     taskCard.addEventListener('dragover', event => event.preventDefault());
     taskCard.addEventListener('drop', handleDrop);
 });
