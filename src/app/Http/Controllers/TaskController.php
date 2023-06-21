@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('task.index', compact('tasks'));
+        return response()->json($tasks);
     }
 
     /**
@@ -46,7 +46,7 @@ class TaskController extends Controller
         $task->description = $request->description;
         $task->save();
 
-        return redirect('/tasks');
+        return response()->json($task, 201);
     }
 
     /**
@@ -92,6 +92,6 @@ class TaskController extends Controller
     public function destroy($id)
     {
         Task::find($id)->delete();
-        return redirect('/tasks');
+        return response()->json(['message' => 'Task deleted successfully']);
     }
 }
